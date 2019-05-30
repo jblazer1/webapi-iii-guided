@@ -46,6 +46,18 @@ server.get("/", (req, res) => {
   `);
 });
 
+server.post("/", async (req, res) => {
+  try {
+    const [id] = await db("shoutouts").insert(req.body);
+    const shoutouts = await db("shoutouts");
+
+    res.status(201).json(shoutouts);
+  } catch (error) {
+    console.error("\nERROR", error);
+    res.status(500).json({ error: "Cannot add the shoutout" });
+  }
+});
+
 // custom middleware declared here and plugged into server.use at the top of the page
 function typeLogger(req, res, next) {
   console.log(`${req.method} Request`);
