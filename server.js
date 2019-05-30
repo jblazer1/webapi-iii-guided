@@ -29,11 +29,11 @@ server.use("/api/hubs", hubsRouter);
 server.get("/", (req, res) => {
   const nameInsert = req.name ? ` ${req.name}` : "";
 
+  res.status(200).json({ messageOfTheDay: process.env.BANANA });
   res.send(`
   <h2>Lambda Hubs API</h2>
   <p>Welcome${nameInsert} to the Lambda Hubs API</p>
   `);
-  res.status(200).json({ messageOfTheDay: process.env.BANANA });
 });
 
 // custom middleware declared here and plugged into server.use at the top of the page
