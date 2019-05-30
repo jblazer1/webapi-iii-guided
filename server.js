@@ -29,7 +29,7 @@ server.use("/api/hubs", hubsRouter);
 server.get("/", (req, res) => {
   const nameInsert = req.name ? ` ${req.name}` : "";
 
-  res.status(200).json({ messageOfTheDay: process.env.BANANA });
+  res.status(200).json({ messageOfTheDay: process.env.BANANA, shoutouts });
   res.send(`
   <h2>Lambda Hubs API</h2>
   <p>Welcome${nameInsert} to the Lambda Hubs API</p>
