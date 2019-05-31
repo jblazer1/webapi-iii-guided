@@ -38,25 +38,12 @@ server.use("/api/hubs", hubsRouter);
 
 server.get("/", (req, res) => {
   const nameInsert = req.name ? ` ${req.name}` : "";
-  const shoutouts = db("shoutouts");
 
-  res.status(200).json({ messageOfTheDay: process.env.BANANA, shoutouts });
-  res.send(`
-  <h2>Lambda Hubs API</h2>
-  <p>Welcome${nameInsert} to the Lambda Hubs API</p>
-  `);
-});
-
-server.post("/", async (req, res) => {
-  try {
-    const [id] = await db("shoutouts").insert(req.body);
-    const shoutouts = await db("shoutouts");
-
-    res.status(201).json(shoutouts);
-  } catch (error) {
-    console.error("\nERROR", error);
-    res.status(500).json({ error: "Cannot add the shoutout" });
-  }
+  res.status(200).json({ messageOfTheDay: process.env.BANANA });
+  // res.send(`
+  // <h2>Lambda Hubs API</h2>
+  // <p>Welcome${nameInsert} to the Lambda Hubs API</p>
+  // `);
 });
 
 // custom middleware declared here and plugged into server.use at the top of the page
